@@ -1,0 +1,13 @@
+name: wine-findr
+title: wine-findR
+username:
+account: sadacca
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 209374
+bundleId: 961625
+url: https://sadacca.shinyapps.io/wine-findr/
+when: 1504162808.12745
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: data/suppdata.RData
