@@ -15,9 +15,9 @@ dataset2 <- pc_wineload
 
 fluidPage(
   
-  title = "Wine-FindR: Using wine reviews to find Chardonnays that taste like Merlots",
+  title = "Wine-FindR: Using wine reviews to find Chardonnays that taste a bit like Merlots",
   h2("Wine-FindR: Using wine reviews to determine what wines are similar to others"),
-  h3("e.g. using wine reviews to find Chardonnays that taste like Merlots"),
+  h3("e.g. using wine reviews to find Chardonnays that taste a bit like Merlots"),
   
   hr(),
   
@@ -47,11 +47,11 @@ fluidPage(
            
            h2("parameters"),
            
-           selectInput('target', 'Find me this kind of wine', dataset2$Group.1, selected = 1),
+           selectInput('target', 'Find me this kind of wine', dataset2$Group.1, selected = "Chardonnay"),
            
            radioButtons("rb", "..which is:",
                         choiceNames = list(
-                          "... identical to  ...",
+                          "... pretty similar to  ...",
                           "... totally different from  ..."
                         ),
                         
@@ -59,7 +59,7 @@ fluidPage(
                           "similarTo", "differentFrom"
                         )),
            
-           selectInput('comparison', 'this kind of wine', dataset2$Group.1, selected = 1),
+           selectInput('comparison', 'this kind of wine', dataset2$Group.1, selected = "Merlot"),
            
            br(),
            

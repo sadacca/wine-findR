@@ -61,9 +61,12 @@ shinyServer(function(input, output, session) {
     fully_subsetted_wines <- targetWinesByPrice()
     
     ggplot(data=pc_wineload[1:30])+
-      geom_point(aes(x = PC1, y = PC2, colour = Group.2))+
+      geom_point(aes(x = PC1, y = PC2, colour = Group.2), size = 4, alpha = 1/2)+
       geom_point(data=fully_subsetted_wines[ndx,], 
-                 aes(x = PC1, y = PC2, colour = 'Selected Wines'))
+                 aes(x = PC1, y = PC2, colour = 'Selected') , size = 6, shape=13)+
+    
+    scale_color_manual(name = 'Wines:', breaks = c('Red', 'Selected','White'), values=c("#e83544", "#56B4E9", "#E69F00")) +
+      theme(legend.justification=c(0.9,0.1), legend.position=c(0.9,0.1))
     
   })
   
