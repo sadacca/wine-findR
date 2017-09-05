@@ -8,7 +8,7 @@
 library(shiny)
 library(ggplot2)
 library(ggrepel)
-load("data/app_data.RData")
+load("data/new_app_data.RData")
 
 shinyServer(function(input, output, session) {
   
