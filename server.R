@@ -8,7 +8,7 @@
 library(shiny)
 library(ggplot2)
 library(ggrepel)
-load("data/new_app_data.RData")
+load("data/app_data.RData")
 
 shinyServer(function(input, output, session) {
   
@@ -17,8 +17,8 @@ shinyServer(function(input, output, session) {
   
   sub_wine_distances <- wine_distances
   
-  sub_wine_distances$price <- as.numeric(
-    gsub('[$,]','',as.character(sub_wine_distances$price)))
+  sub_wine_distances$Price <- as.numeric(
+    gsub('[$,]','',as.character(sub_wine_distances$Price)))
   
   
   
@@ -31,7 +31,7 @@ shinyServer(function(input, output, session) {
   
   targetWinesByPrice <- reactive({
     target1 <- targetWines()
-    subset(target1, price < as.numeric(input$dollars))
+    subset(target1, Price < as.numeric(input$dollars))
     
   })
   
@@ -50,9 +50,25 @@ shinyServer(function(input, output, session) {
   
   output$plot_dummy <- renderPlot({
 
-    ggplot(pc_wineload, aes(x = PC1, y = PC2, label= Group.1))+ 
-      geom_point(color = 'orange')+
-      geom_label_repel(label.size =NA, fontface = "bold", size = 3)
+    ggplot(pc_wineload, aes(x = PC1, y = PC2, label= Group.1, color = Group.2))+ 
+      geom_point()+
+      scale_color_manual(name = 'Wines:', breaks = c('Red', 'White'), values=c("#e83544", "#E69F00")) +
+      geom_label_repel(label.size =NA, fontface = "bold", size = 3, 
+                       # Add extra padding around each text label.
+                       box.padding = unit(.5, 'lines'),
+                       # Add extra padding around each data point.
+                       point.padding = unit(1, 'lines'),
+                       # Color of the line segments.
+                       segment.color = '#000000',
+                       # Width of the line segments.
+                       segment.size = 0.5,
+                       # Draw an arrow from the label to the data point.
+                       arrow = arrow(length = unit(0.01, 'npc')),
+                       # Strength of the repulsion force.
+                       force = 2,
+                       # Maximum iterations of the naive repulsion algorithm O(n^2).
+                       max.iter = 3e4
+                       ) + theme(legend.justification=c(0.9,0.1), legend.position=FALSE)
   })
   
   output$plot_active <- renderPlot({

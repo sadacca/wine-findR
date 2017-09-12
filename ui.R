@@ -9,7 +9,7 @@ library(shiny)
 library(ggplot2)
 library(shinythemes)
 
-load("data/new_app_data.RData")
+load("data/app_data.RData")
 
 dataset1 <- wine_distances
 dataset2 <- pc_wineload
@@ -51,11 +51,11 @@ fluidPage(
   #'  "))
   #'),
   
-  title="Wine-FindR: Using wine reviews to find Chardonnays that taste a bit like Merlots",
+  title="Wine-FindR: Using wine reviews to find Chardonnays that taste a bit like a Pinot Noir",
   
   titlePanel("Wine-FindR:"),
   
-  h3(" Using wine reviews to find Chardonnays that taste a bit like Merlots"),
+  h3(" Using wine reviews to find Chardonnays that taste a bit like a Pinot Noir"),
   
 
   hr(),
@@ -87,10 +87,10 @@ fluidPage(
            h2("parameters"),
            
            selectInput('target', 'Find me this kind of wine',
-                       list("Red, many reviews" = c("Cabernet Sauvignon", "Pinot Noir", "Sangiovese","Malbec","Red Blend"), 
-                            "White, many reviews" = c("Chardonnay","Riesling","Sauvignon Blanc","White Blend"),
-                            "Red, fewer reviews" = c("Aglianico","Bordeaux-style Red Blend","Cabernet Franc","Grenache","Merlot","Nebbiolo","Rhône-style Red Blend","Syrah","Tempranillo","Zinfandel"),
-                            "White, fewer reviews"= c("Bordeaux-style White Blend","Garganega","Gewürztraminer","Grüner Veltliner","Pinot Grigio","Pinot Gris","Vernaccia","Viognier")), selected = "Chardonnay"),
+                       list("Red, many reviews" = c("Cabernet Sauvignon", "Pinot Noir", "Sangiovese","Malbec"), 
+                            "White, many reviews" = c("Chardonnay","Riesling","Sauvignon Blanc"),
+                            "Red, fewer reviews" = c("Cabernet Franc","Grenache","Merlot","Nebbiolo","Rhône-style Red Blend","Syrah","Tempranillo"),
+                            "White, fewer reviews"= c("Gewürztraminer","Grüner Veltliner","Pinot Grigio","Pinot Gris","Viognier")), selected = "Chardonnay"),
            
            radioButtons("rb", "..which is:",
                         choiceNames = list(
@@ -103,10 +103,10 @@ fluidPage(
                         )),
            
            selectInput('comparison', 'this kind of wine',
-                       list("Red, many reviews" = c("Cabernet Sauvignon", "Pinot Noir", "Sangiovese","Malbec","Red Blend"), 
-                            "White, many reviews" = c("Chardonnay","Riesling","Sauvignon Blanc","White Blend"),
-                            "Red, fewer reviews" = c("Aglianico","Bordeaux-style Red Blend","Cabernet Franc","Grenache","Merlot","Nebbiolo","Rhône-style Red Blend","Syrah","Tempranillo","Zinfandel"),
-                            "White, fewer reviews"= c("Bordeaux-style White Blend","Garganega","Gewürztraminer","Grüner Veltliner","Pinot Grigio","Pinot Gris","Vernaccia","Viognier")), selected = "Merlot"),
+                       list("Red, many reviews" = c("Cabernet Sauvignon", "Pinot Noir", "Sangiovese","Malbec"), 
+                            "White, many reviews" = c("Chardonnay","Riesling","Sauvignon Blanc"),
+                            "Red, fewer reviews" = c("Cabernet Franc","Grenache","Merlot","Nebbiolo","Rhône-style Red Blend","Syrah","Tempranillo"),
+                            "White, fewer reviews"= c("Gewürztraminer","Grüner Veltliner","Pinot Grigio","Pinot Gris","Viognier")), selected = "Pinot Noir"),
            
            br(),
            
